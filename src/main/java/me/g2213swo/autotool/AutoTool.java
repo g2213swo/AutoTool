@@ -1,5 +1,6 @@
 package me.g2213swo.autotool;
 
+import me.g2213swo.autotool.command.AutoToolCmd;
 import me.g2213swo.autotool.listener.AutoToolListener;
 import me.g2213swo.autotool.nms.NMS;
 import me.g2213swo.v1_20_1.V1_20_1;
@@ -14,7 +15,7 @@ public class AutoTool extends JavaPlugin {
 
     private static AutoTool instance;
 
-    private static NamespacedKey isEnabledKey;
+    public static NamespacedKey isEnabledKey;
 
     public static AutoTool getInstance() {
         return instance;
@@ -29,7 +30,7 @@ public class AutoTool extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new AutoToolListener(this), this);
-        getServer().getPluginCommand("autotool").setExecutor(new me.g2213swo.autotool.command.AutoToolCmd(this));
+        getServer().getPluginCommand("autotool").setExecutor(new AutoToolCmd(this));
     }
 
     @Override
@@ -46,8 +47,9 @@ public class AutoTool extends JavaPlugin {
         player.getPersistentDataContainer().set(isEnabledKey, PersistentDataType.BOOLEAN, enabled);
     }
 
-    public boolean isAutoToolEnabled(Player player) {
-        return player.getPersistentDataContainer().getOrDefault(isEnabledKey, PersistentDataType.BOOLEAN, false);
-    }
 
+    public boolean isAutoToolEnabled(Player player) {
+        Boolean value = player.getPersistentDataContainer().get(isEnabledKey, PersistentDataType.BOOLEAN);
+        return value != null && value;
+    }
 }

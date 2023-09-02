@@ -26,6 +26,7 @@ public class AutoToolCmd implements TabExecutor {
                     .color(TextColor.color(0xE74C3C)));
             return true;
         }
+
         if (args.length == 0) {
             player.sendMessage(Component.text()
                     .append(Component.text("AutoTool is currently ")
@@ -37,13 +38,14 @@ public class AutoToolCmd implements TabExecutor {
         switch (args[0]) {
             case "toggle" -> {
                 plugin.setAutoToolEnabled(player, !plugin.isAutoToolEnabled(player));
+
                 player.sendMessage(Component.text()
                         .append(Component.text("AutoTool is now ")
                                 .color(TextColor.color(0x2ECC71)))
                         .append(Component.text(plugin.isAutoToolEnabled(player) ? "enabled" : "disabled")
                                 .color(TextColor.color(0x3498DB))));
             }
-            default -> player.sendMessage("Usage: /autotool <toggle>");
+            default -> player.sendMessage(Component.text("Usage: /autotool <toggle>").color(TextColor.color(0xE74C3C)));
         }
         return true;
     }

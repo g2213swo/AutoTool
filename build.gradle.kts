@@ -11,6 +11,7 @@ repositories {
     maven {
         url = uri("https://repo.papermc.io/repository/maven-public/")
     }
+    maven { url = uri("https://repo.william278.net/releases") }
 }
 
 dependencies {
@@ -21,6 +22,7 @@ dependencies {
     implementation(project(":V1_20_1", configuration = "reobf"))
 
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("net.william278:husksync:2.2.8")
 }
 
 tasks.test {
